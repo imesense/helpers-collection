@@ -47,6 +47,12 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UnitTest1.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ImeSense.Helpers.Mvvm\ImeSense.Helpers.Mvvm.csproj">
+      <Project>{F925A430-ED15-48E7-A2A0-AAA6EA367D25}</Project>
+      <Name>ImeSense.Helpers.Mvvm</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
