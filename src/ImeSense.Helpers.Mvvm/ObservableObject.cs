@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace ImeSense.Helpers.Mvvm {
     public abstract class ObservableObject : INotifyPropertyChanged {
