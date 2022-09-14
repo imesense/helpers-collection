@@ -1,7 +1,7 @@
-﻿<Application x:Class="ImeSense.Helpers.Mvvm.WpfDemoApplication.App"
+﻿<Application x:Class="ImeSense.Helpers.Mvvm.Demo.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:l="clr-namespace:ImeSense.Helpers.Mvvm.WpfDemoApplication">
+             xmlns:l="clr-namespace:ImeSense.Helpers.Mvvm.Demo">
     <Application.Resources>
     </Application.Resources>
 </Application>

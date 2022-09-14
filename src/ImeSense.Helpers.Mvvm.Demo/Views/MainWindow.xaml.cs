@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace ImeSense.Helpers.Mvvm.WpfDemoApplication.Views {
+namespace ImeSense.Helpers.Mvvm.Demo.Views {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>

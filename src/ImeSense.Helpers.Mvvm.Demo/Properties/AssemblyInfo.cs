@@ -7,7 +7,7 @@ using System.Windows;
 // General information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly
-[assembly: AssemblyTitle("ImeSense.Helpers.Mvvm.WpfDemoApplication")]
+[assembly: AssemblyTitle("ImeSense.Helpers.Mvvm.Demo")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ImeSense")]

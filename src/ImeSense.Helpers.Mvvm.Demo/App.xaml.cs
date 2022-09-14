@@ -1,8 +1,8 @@
 ﻿using System.Windows;
 
-using ImeSense.Helpers.Mvvm.WpfDemoApplication.Views;
+using ImeSense.Helpers.Mvvm.Demo.Views;
 
-namespace ImeSense.Helpers.Mvvm.WpfDemoApplication {
+namespace ImeSense.Helpers.Mvvm.Demo {
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
