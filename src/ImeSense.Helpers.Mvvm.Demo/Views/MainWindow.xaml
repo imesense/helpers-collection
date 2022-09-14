@@ -9,5 +9,26 @@
         Width="525"
         WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0">
+            <MenuItem Header="File">
+                <MenuItem Header="Exit"
+                          InputGestureText="Alt+F4"
+                          Command="{Binding Path=ExitCommand}" />
+            </MenuItem>
+
+            <MenuItem Header="Help">
+                <MenuItem Header="About..."
+                          Command="{Binding Path=ShowAboutCommand}" />
+            </MenuItem>
+        </Menu>
+
+        <ScrollViewer Grid.Row="1"
+                      HorizontalScrollBarVisibility="Auto"
+                      VerticalScrollBarVisibility="Auto" />
     </Grid>
 </Window>
