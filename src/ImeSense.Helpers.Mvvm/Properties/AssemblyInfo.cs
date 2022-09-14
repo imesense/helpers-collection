@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ImeSense")]
 [assembly: AssemblyProduct("ImeSense.Helpers")]
-[assembly: AssemblyCopyright("Copyright © 2022 ImeSense, Renat Shakirov")]
+[assembly: AssemblyCopyright("Copyright (c) 2022 ImeSense, Renat Shakirov")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
