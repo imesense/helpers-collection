@@ -9,12 +9,12 @@
     <ProjectGuid>{D9C149F6-0332-4263-8F46-5A2F0FF38AF9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ImeSense.Helpers.Mvvm.WpfDemoApplication</RootNamespace>
-    <AssemblyName>ImeSense.Helpers.Mvvm.WpfDemoApplication</AssemblyName>
+    <RootNamespace>ImeSense.Helpers.Mvvm.Demo</RootNamespace>
+    <AssemblyName>ImeSense.Helpers.Mvvm.Demo</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <StartupObject>ImeSense.Helpers.Mvvm.WpfDemoApplication.App</StartupObject>
+    <StartupObject>ImeSense.Helpers.Mvvm.Demo.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>

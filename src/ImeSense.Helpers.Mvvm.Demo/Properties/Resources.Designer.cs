@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ImeSense.Helpers.Mvvm.WpfDemoApplication.Properties {
+namespace ImeSense.Helpers.Mvvm.Demo.Properties {
     using System;
     
     
