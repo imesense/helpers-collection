@@ -9,40 +9,32 @@ namespace ImeSense.Helpers.Mvvm {
         public event EventHandler CanExecuteChanged;
 
         public RelayCommand(Action execute) {
-            if (execute == null) {
-                throw new ArgumentNullException(ExceptionMessages.ExecuteIsNull);
-            }
-
             _execute = execute;
         }
 
         public RelayCommand(Action execute, Func<bool> canExecute) {
-            if (execute == null) {
-                throw new ArgumentNullException(ExceptionMessages.ExecuteIsNull);
-            }
-            if (canExecute == null) {
-                throw new ArgumentNullException(ExceptionMessages.CanExecuteIsNull);
-            }
-
             _execute = execute;
             _canExecute = canExecute;
         }
 
         public bool CanExecute(object parameter) {
-            bool result = false;
-            if (_canExecute != null) {
-                result = _canExecute.Invoke();
+            var func = _canExecute;
+            if (func == null) {
+                return true;
             }
-            return result != false;
+            return func();
         }
 
         public void Execute(object parameter) {
-            _execute();
+            if (CanExecute(parameter)) {
+                _execute();
+            }
         }
 
         public void NotifyCanExecuteChanged() {
-            if (CanExecuteChanged != null) {
-                CanExecuteChanged.Invoke(this, EventArgs.Empty);
+            var canExecuteChanged = this.CanExecuteChanged;
+            if (canExecuteChanged != null) {
+                canExecuteChanged(this, EventArgs.Empty);
             }
         }
     }
@@ -55,76 +47,44 @@ namespace ImeSense.Helpers.Mvvm {
         public event EventHandler CanExecuteChanged;
 
         public RelayCommand(Action<T> execute) {
-            if (execute == null) {
-                throw new ArgumentNullException(ExceptionMessages.ExecuteIsNull);
-            }
-
             _execute = execute;
         }
 
         public RelayCommand(Action<T> execute, Predicate<T> canExecute) {
-            if (execute == null) {
-                throw new ArgumentNullException(ExceptionMessages.ExecuteIsNull);
-            }
-            if (canExecute == null) {
-                throw new ArgumentNullException(ExceptionMessages.CanExecuteIsNull);
-            }
-
             _execute = execute;
             _canExecute = canExecute;
         }
 
         public bool CanExecute(T parameter) {
-            bool result = false;
-            if (_canExecute != null) {
-                result = _canExecute.Invoke(parameter);
+            var predicate = _canExecute;
+            if (predicate == null) {
+                return true;
             }
-            return result != false;
+            return predicate(parameter);
         }
 
         public bool CanExecute(object parameter) {
-            if (parameter == null && default(T) != null) {
+            if (default(T) != null && parameter == null) {
                 return false;
             }
-
-            T result;
-            if (!TryGetCommandArgument(parameter, out result)) {
-                throw new ArgumentException(ExceptionMessages.ParameterIsNull);
-            }
-            return CanExecute(result);
+            return CanExecute((T) parameter);
         }
 
         public void Execute(T parameter) {
-            _execute(parameter);
+            if (CanExecute(parameter)) {
+                _execute(parameter);
+            }
         }
 
         public void Execute(object parameter) {
-            T result;
-            if (!TryGetCommandArgument(parameter, out result)) {
-                throw new ArgumentException(ExceptionMessages.ParameterIsNull);
-            }
-            Execute(result);
+            Execute((T) parameter);
         }
 
         public void NotifyCanExecuteChanged() {
-            if (CanExecuteChanged != null) {
-                CanExecuteChanged.Invoke(this, EventArgs.Empty);
+            var canExecuteChanged = this.CanExecuteChanged;
+            if (canExecuteChanged != null) {
+                canExecuteChanged(this, EventArgs.Empty);
             }
-        }
-
-        internal static bool TryGetCommandArgument(object parameter, out T result) {
-            if (parameter == null && default(T) == null) {
-                result = default(T);
-                return true;
-            }
-
-            if (parameter is T) {
-                result = default(T);
-                return true;
-            }
-
-            result = default(T);
-            return false;
         }
     }
 }
