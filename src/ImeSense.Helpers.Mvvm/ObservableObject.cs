@@ -6,12 +6,9 @@ namespace ImeSense.Helpers.Mvvm {
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs eventArgs) {
-            if (eventArgs == null) {
-                throw new ArgumentNullException(ExceptionMessages.EventArgsIsNull);
-            }
-
-            if (PropertyChanged != null) {
-                PropertyChanged.Invoke(this, eventArgs);
+            var propertyChanged = this.PropertyChanged;
+            if (propertyChanged != null) {
+                propertyChanged(this, eventArgs);
             }
         }
 
