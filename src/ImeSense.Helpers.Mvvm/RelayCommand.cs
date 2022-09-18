@@ -9,10 +9,21 @@ namespace ImeSense.Helpers.Mvvm {
         public event EventHandler CanExecuteChanged;
 
         public RelayCommand(Action execute) {
+            if (execute == null) {
+                throw new ArgumentException("Delegate \"execute\" can not be null!");
+            }
+
             _execute = execute;
         }
 
         public RelayCommand(Action execute, Func<bool> canExecute) {
+            if (execute == null) {
+                throw new ArgumentException("Delegate \"execute\" can not be null!");
+            }
+            if (canExecute == null) {
+                throw new ArgumentException("Delegate \"canExecute\" can not be null!");
+            }
+
             _execute = execute;
             _canExecute = canExecute;
         }
@@ -26,13 +37,11 @@ namespace ImeSense.Helpers.Mvvm {
         }
 
         public void Execute(object parameter) {
-            if (CanExecute(parameter)) {
-                _execute();
-            }
+            _execute();
         }
 
         public void NotifyCanExecuteChanged() {
-            var canExecuteChanged = this.CanExecuteChanged;
+            var canExecuteChanged = CanExecuteChanged;
             if (canExecuteChanged != null) {
                 canExecuteChanged(this, EventArgs.Empty);
             }
