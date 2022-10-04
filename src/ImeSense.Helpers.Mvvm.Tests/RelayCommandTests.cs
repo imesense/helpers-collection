@@ -6,6 +6,19 @@ namespace ImeSense.Helpers.Mvvm.Tests {
     [TestClass]
     public class RelayCommandTests {
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Execute_Null_ThrowsArgumentException() {
+            var command = new RelayCommand(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void CanExecute_Null_ThrowsArgumentException() {
+            var ticks = 0;
+            var command = new RelayCommand(() => ticks++, null);
+        }
+
+        [TestMethod]
         public void Execute_Ticks_CorrectIncreaseOfTicks() {
             var ticks = 0;
             var command = new RelayCommand(() => ticks++);
