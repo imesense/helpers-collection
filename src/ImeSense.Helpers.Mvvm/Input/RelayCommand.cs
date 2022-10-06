@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ImeSense.Helpers.Mvvm {
+namespace ImeSense.Helpers.Mvvm.Input {
     public class RelayCommand : IRelayCommand {
         private readonly Action _execute;
 

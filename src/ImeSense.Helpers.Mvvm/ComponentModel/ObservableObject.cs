@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace ImeSense.Helpers.Mvvm {
+namespace ImeSense.Helpers.Mvvm.ComponentModel {
     public abstract class ObservableObject : INotifyPropertyChanged, INotifyPropertyChanging {
         public event PropertyChangedEventHandler PropertyChanged;
 
