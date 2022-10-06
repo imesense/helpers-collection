@@ -2,9 +2,13 @@
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImeSense.Helpers.Mvvm.Tests {
+using ImeSense.Helpers.Mvvm.Input;
+
+namespace ImeSense.Helpers.Mvvm.Tests.Input
+{
     [TestClass]
-    public class RelayCommandTests {
+    public class RelayCommandTests
+    {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Execute_Null_ThrowsArgumentException() {
@@ -25,15 +29,15 @@ namespace ImeSense.Helpers.Mvvm.Tests {
             Assert.IsTrue(command.CanExecute(null));
             Assert.IsTrue(command.CanExecute(new object()));
 
-            var sender = default(object);
-            var eventArgs = default(EventArgs);
-            command.CanExecuteChanged += (s, e) => {
-                sender = s;
-                eventArgs = e;
+            var commandSender = default(object);
+            var commandEventArgs = default(EventArgs);
+            command.CanExecuteChanged += (sender, eventArgs) => {
+                commandSender = sender;
+                commandEventArgs = eventArgs;
             };
             command.NotifyCanExecuteChanged();
-            Assert.AreSame(sender, command);
-            Assert.AreSame(eventArgs, EventArgs.Empty);
+            Assert.AreSame(commandSender, command);
+            Assert.AreSame(commandEventArgs, EventArgs.Empty);
 
             command.Execute(null);
             Assert.AreEqual(ticks, 1);

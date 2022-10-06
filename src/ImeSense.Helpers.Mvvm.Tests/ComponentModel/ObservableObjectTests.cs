@@ -4,7 +4,9 @@ using System.ComponentModel;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace ImeSense.Helpers.Mvvm.Tests {
+using ImeSense.Helpers.Mvvm.ComponentModel;
+
+namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
     /// <summary>
     /// Summary description for ObservableObjectTests
     /// </summary>
@@ -23,7 +25,7 @@ namespace ImeSense.Helpers.Mvvm.Tests {
                     if (!EqualityComparer<T>.Default.Equals(_data, value)) {
                         _data = value;
                     }
-                    
+
                     OnPropertyChanged("Data");
                 }
             }
@@ -41,7 +43,7 @@ namespace ImeSense.Helpers.Mvvm.Tests {
 
             model.PropertyChanging += (sender, eventArgs) => {
                 Assert.IsNull(changingEventArgs);
-                Assert.AreEqual(changedValue, default(int));
+                Assert.AreEqual(changedValue, default);
                 Assert.AreSame(model, sender);
                 Assert.IsNotNull(sender);
                 Assert.IsNotNull(eventArgs);
@@ -52,7 +54,7 @@ namespace ImeSense.Helpers.Mvvm.Tests {
 
             model.PropertyChanged += (sender, eventArgs) => {
                 Assert.IsNotNull(changingEventArgs);
-                Assert.AreEqual(changedValue, default(int));
+                Assert.AreEqual(changedValue, default);
                 Assert.AreSame(model, sender);
                 Assert.IsNotNull(sender);
                 Assert.IsNotNull(eventArgs);
@@ -92,7 +94,7 @@ namespace ImeSense.Helpers.Mvvm.Tests {
                 }
                 set {
                     OnPropertyChanging("Name");
-                    
+
                     if (Person == null) {
                         throw new ArgumentException("Model \"Person\" can not be null!");
                     }
@@ -146,7 +148,7 @@ namespace ImeSense.Helpers.Mvvm.Tests {
                 _person = person;
             }
 
-            public Person PersonProxy {
+            public Person PersonWrapper {
                 get {
                     return _person;
                 }
@@ -202,7 +204,7 @@ namespace ImeSense.Helpers.Mvvm.Tests {
             Assert.AreEqual(changingValue, "Marie");
             Assert.AreEqual(changedEventArgs.PropertyName, "Name");
             Assert.AreEqual(changedValue, "Alexander");
-            Assert.AreEqual(model.PersonProxy.Name, "Alexander");
+            Assert.AreEqual(model.PersonWrapper.Name, "Alexander");
         }
     }
 }
