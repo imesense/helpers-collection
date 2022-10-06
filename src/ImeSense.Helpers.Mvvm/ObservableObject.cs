@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace ImeSense.Helpers.Mvvm {
     public abstract class ObservableObject : INotifyPropertyChanged, INotifyPropertyChanging {
@@ -8,14 +7,14 @@ namespace ImeSense.Helpers.Mvvm {
         public event PropertyChangingEventHandler PropertyChanging;
 
         protected virtual void OnPropertyChanged(PropertyChangedEventArgs eventArgs) {
-            var propertyChanged = this.PropertyChanged;
+            var propertyChanged = PropertyChanged;
             if (propertyChanged != null) {
                 propertyChanged(this, eventArgs);
             }
         }
 
         protected virtual void OnPropertyChanging(PropertyChangingEventArgs eventArgs) {
-            var propertyChanging = this.PropertyChanging;
+            var propertyChanging = PropertyChanging;
             if (propertyChanging != null) {
                 propertyChanging(this, eventArgs);
             }
