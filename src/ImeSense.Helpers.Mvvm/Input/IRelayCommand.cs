@@ -9,14 +9,26 @@ namespace ImeSense.Helpers.Mvvm.Input {
         /// <summary>
         /// Notifies of changes in
         /// <see cref="ICommand.CanExecute" />
-        /// property
         /// </summary>
         void NotifyCanExecuteChanged();
     }
 
+    /// <summary>
+    /// Represents more specific version of <see cref="IRelayCommand" />
+    /// </summary>
+    /// <typeparam name="T">Argument for the interface methods</typeparam>
     public interface IRelayCommand<in T> : IRelayCommand {
+        /// <summary>
+        /// Provides a strongly-typed variant of <see cref="ICommand.CanExecute(object)" />
+        /// </summary>
+        /// <param name="parameter">Input parameter</param>
+        /// <returns>Whether or not the current command can be executed</returns>
         bool CanExecute(T parameter);
 
+        /// <summary>
+        /// Provides a strongly-typed variant of <see cref="ICommand.Execute(object)" />
+        /// </summary>
+        /// <param name="parameter">Input parameter</param>
         void Execute(T parameter);
     }
 }

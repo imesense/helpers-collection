@@ -5,8 +5,16 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ImeSense.Helpers.Mvvm.Input;
 
 namespace ImeSense.Helpers.Mvvm.Tests.Input {
+    /// <summary>
+    /// Test cases for <see cref="RelayCommand{T}" />
+    /// </summary>
     [TestClass]
     public class RelayCommandOfTTests {
+        /// <summary>
+        /// Asserts given action throws <see cref="ArgumentException" /> with specific parameter name
+        /// </summary>
+        /// <param name="action">Input <see cref="Action"/> to invoke</param>
+        /// <param name="parameterName">Expected parameter name</param>
         public static void ThrowArgumentException(Action action, string parameterName) {
             var success = false;
 
