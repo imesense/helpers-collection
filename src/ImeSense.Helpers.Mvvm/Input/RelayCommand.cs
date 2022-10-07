@@ -2,8 +2,16 @@
 
 namespace ImeSense.Helpers.Mvvm.Input {
     public class RelayCommand : IRelayCommand {
+        /// <summary>
+        /// <see cref="Action" /> delegate for invoke on using
+        /// <see cref="Execute" />
+        /// </summary>
         private readonly Action _execute;
 
+        /// <summary>
+        /// Optional <see cref="Func{TResult}" /> delegate for invoke on using
+        /// <see cref="CanExecute" />
+        /// </summary>
         private readonly Func<bool> _canExecute;
 
         public event EventHandler CanExecuteChanged;
