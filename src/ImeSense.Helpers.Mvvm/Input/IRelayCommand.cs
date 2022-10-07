@@ -13,4 +13,10 @@ namespace ImeSense.Helpers.Mvvm.Input {
         /// </summary>
         void NotifyCanExecuteChanged();
     }
+
+    public interface IRelayCommand<in T> : IRelayCommand {
+        bool CanExecute(T parameter);
+
+        void Execute(T parameter);
+    }
 }
