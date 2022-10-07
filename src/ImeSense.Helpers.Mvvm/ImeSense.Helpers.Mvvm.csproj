@@ -4,13 +4,14 @@
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>ImeSense.Helpers.Mvvm</Title>
         <Description>Helpers classes for creating applications on the platform .NET</Description>
-        <Authors>ImeSense, Renat Shakirov</Authors>
+        <Authors>ImeSense, acidicMercury8</Authors>
         <PackageTags>mvvm</PackageTags>
         <Version>0.1.0</Version>
         <Company>ImeSense</Company>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/imesense/helpers-collection/</PackageProjectUrl>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>

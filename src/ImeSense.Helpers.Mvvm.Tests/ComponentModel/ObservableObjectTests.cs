@@ -8,7 +8,7 @@ using ImeSense.Helpers.Mvvm.ComponentModel;
 
 namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
     /// <summary>
-    /// Summary description for ObservableObjectTests
+    /// Test cases for <see cref="ObservableObject" />
     /// </summary>
     [TestClass]
     public class ObservableObjectTests {

@@ -5,6 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ImeSense.Helpers.Mvvm.Input;
 
 namespace ImeSense.Helpers.Mvvm.Tests.Input {
+    /// <summary>
+    /// Test cases for <see cref="RelayCommand" />
+    /// </summary>
     [TestClass]
     public class RelayCommandTests {
         [TestMethod]
