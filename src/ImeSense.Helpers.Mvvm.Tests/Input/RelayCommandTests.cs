@@ -4,11 +4,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using ImeSense.Helpers.Mvvm.Input;
 
-namespace ImeSense.Helpers.Mvvm.Tests.Input
-{
+namespace ImeSense.Helpers.Mvvm.Tests.Input {
     [TestClass]
-    public class RelayCommandTests
-    {
+    public class RelayCommandTests {
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Execute_Null_ThrowsArgumentException() {
