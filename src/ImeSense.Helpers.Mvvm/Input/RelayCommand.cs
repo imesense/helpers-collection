@@ -18,7 +18,7 @@ namespace ImeSense.Helpers.Mvvm.Input {
 
         public RelayCommand(Action execute) {
             if (execute == null) {
-                throw new ArgumentException("Delegate \"execute\" can not be null!");
+                throw new ArgumentNullException("execute", "Delegate \"execute\" can not be null!");
             }
 
             _execute = execute;
@@ -26,10 +26,10 @@ namespace ImeSense.Helpers.Mvvm.Input {
 
         public RelayCommand(Action execute, Func<bool> canExecute) {
             if (execute == null) {
-                throw new ArgumentException("Delegate \"execute\" can not be null!");
+                throw new ArgumentNullException("execute", "Delegate \"execute\" can not be null!");
             }
             if (canExecute == null) {
-                throw new ArgumentException("Delegate \"canExecute\" can not be null!");
+                throw new ArgumentNullException("canExecute", "Delegate \"canExecute\" can not be null!");
             }
 
             _execute = execute;
@@ -65,7 +65,7 @@ namespace ImeSense.Helpers.Mvvm.Input {
 
         public RelayCommand(Action<T> execute) {
             if (execute == null) {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("execute", "Delegate \"execute\" can not be null!");
             }
 
             _execute = execute;
@@ -73,10 +73,10 @@ namespace ImeSense.Helpers.Mvvm.Input {
 
         public RelayCommand(Action<T> execute, Predicate<T> canExecute) {
             if (execute == null) {
-                throw new ArgumentNullException("Delegate \"execute\" can not be null!");
+                throw new ArgumentNullException("execute", "Delegate \"execute\" can not be null!");
             }
             if (canExecute == null) {
-                throw new ArgumentNullException("Delegate \"execute\" can not be null!");
+                throw new ArgumentNullException("canExecute", "Delegate \"canExecute\" can not be null!");
             }
 
             _execute = execute;
