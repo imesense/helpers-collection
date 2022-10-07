@@ -43,7 +43,7 @@ namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
 
             model.PropertyChanging += (sender, eventArgs) => {
                 Assert.IsNull(changingEventArgs);
-                Assert.AreEqual(changedValue, default);
+                Assert.AreEqual(changedValue, default(int));
                 Assert.AreSame(model, sender);
                 Assert.IsNotNull(sender);
                 Assert.IsNotNull(eventArgs);
@@ -54,7 +54,7 @@ namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
 
             model.PropertyChanged += (sender, eventArgs) => {
                 Assert.IsNotNull(changingEventArgs);
-                Assert.AreEqual(changedValue, default);
+                Assert.AreEqual(changedValue, default(int));
                 Assert.AreSame(model, sender);
                 Assert.IsNotNull(sender);
                 Assert.IsNotNull(eventArgs);
