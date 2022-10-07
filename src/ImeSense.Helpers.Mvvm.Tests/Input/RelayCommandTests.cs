@@ -8,14 +8,14 @@ namespace ImeSense.Helpers.Mvvm.Tests.Input {
     [TestClass]
     public class RelayCommandTests {
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Execute_Null_ThrowsArgumentException() {
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Execute_Null_ThrowArgumentNullException() {
             var command = new RelayCommand(null);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void CanExecute_Null_ThrowsArgumentException() {
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CanExecute_Null_ThrowArgumentNullException() {
             var ticks = 0;
             var command = new RelayCommand(() => ticks++, null);
         }
