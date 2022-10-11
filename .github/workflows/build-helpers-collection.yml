@@ -1,0 +1,49 @@
+name: 'Build helpers collection'
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    name: 'Building'
+
+    strategy:
+      matrix:
+        system: [ windows-2022 ]
+        dotnet: [ '6.0.x' ]
+        config: [ Debug, Release ]
+
+    runs-on: ${{ matrix.system }}
+
+    env:
+      Solution: HelpersCollection.sln
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: ${{ matrix.dotnet }}
+
+      - name: Build solution
+        run: |
+           dotnet build $env:Solution -t:Restore -p:Configuration=${{ matrix.config }}
+
+      - name: Run tests
+        run:
+          dotnet test $env:Solution
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: bin-${{ matrix.config }}-${{ github.sha }}
+          path: bin/${{ matrix.config }}/
