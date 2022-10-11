@@ -1,6 +1,6 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFrameworks>net40</TargetFrameworks>
+        <TargetFrameworks>net6.0</TargetFrameworks>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Title>ImeSense.Helpers.Mvvm</Title>
         <Description>Helpers classes for creating applications on the platform .NET</Description>
@@ -13,8 +13,4 @@
         <PackageProjectUrl>https://github.com/imesense/helpers-collection/</PackageProjectUrl>
         <GenerateDocumentationFile>True</GenerateDocumentationFile>
     </PropertyGroup>
-
-    <ItemGroup>
-        <Reference Include="PresentationCore" />
-    </ItemGroup>
 </Project>
