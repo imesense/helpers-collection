@@ -29,9 +29,7 @@ public sealed class RelayCommand : IRelayCommand {
     /// <param name="execute">Execution logic</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="execute" /> is <see langword="null" /></exception>
     public RelayCommand(Action execute) {
-        ArgumentNullException.ThrowIfNull(execute);
-
-        _execute = execute;
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
     }
 
     /// <summary>
@@ -41,11 +39,8 @@ public sealed class RelayCommand : IRelayCommand {
     /// <param name="canExecute">Execution status</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="execute" /> or <paramref name="canExecute" /> are <see langword="null" /></exception>
     public RelayCommand(Action execute, Func<bool> canExecute) {
-        ArgumentNullException.ThrowIfNull(execute);
-        ArgumentNullException.ThrowIfNull(canExecute);
-
-        _execute = execute;
-        _canExecute = canExecute;
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+        _canExecute = canExecute ?? throw new ArgumentNullException(nameof(canExecute));
     }
 
     /// <summary>
@@ -105,9 +100,7 @@ public sealed class RelayCommand<T> : IRelayCommand<T> {
     /// <param name="execute">Execution logic</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="execute" /> is <see langword="null" /></exception>
     public RelayCommand(Action<T?> execute) {
-        ArgumentNullException.ThrowIfNull(execute);
-
-        _execute = execute;
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
     }
 
     /// <summary>
@@ -117,11 +110,8 @@ public sealed class RelayCommand<T> : IRelayCommand<T> {
     /// <param name="canExecute">Execution status</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="execute" /> or <paramref name="canExecute" /> are <see langword="null" /></exception>
     public RelayCommand(Action<T?> execute, Predicate<T?>? canExecute) {
-        ArgumentNullException.ThrowIfNull(execute);
-        ArgumentNullException.ThrowIfNull(canExecute);
-
-        _execute = execute;
-        _canExecute = canExecute;
+        _execute = execute ?? throw new ArgumentNullException(nameof(execute));
+        _canExecute = canExecute ?? throw new ArgumentNullException(nameof(canExecute));
     }
 
     /// <summary>
