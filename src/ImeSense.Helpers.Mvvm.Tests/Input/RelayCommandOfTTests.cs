@@ -29,11 +29,6 @@ namespace ImeSense.Helpers.Mvvm.Tests.Input {
         }
 
         [TestMethod]
-        public void Execute_Null_ThrowArgumentNullException() {
-            Assert.ThrowsException<ArgumentNullException>(() => new RelayCommand<string>(null));
-        }
-
-        [TestMethod]
         public void CanExecute_Null_ThrowArgumentNullException() {
             var text = string.Empty;
             Assert.ThrowsException<ArgumentNullException>(() => new RelayCommand<string>(source => text = source, null));
