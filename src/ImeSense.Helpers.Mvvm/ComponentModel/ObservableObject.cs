@@ -23,7 +23,9 @@ public abstract class ObservableObject : INotifyPropertyChanged, INotifyProperty
     /// <param name="eventArgs">Input <see cref="PropertyChangedEventArgs" /> instance</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventArgs" /> is <see langword="null" /></exception>
     protected virtual void OnPropertyChanged(PropertyChangedEventArgs eventArgs) {
-        ArgumentNullException.ThrowIfNull(eventArgs);
+        if (eventArgs == null) {
+            throw new ArgumentNullException(nameof(eventArgs));
+        }
 
         PropertyChanged?.Invoke(this, eventArgs);
     }
@@ -34,7 +36,9 @@ public abstract class ObservableObject : INotifyPropertyChanged, INotifyProperty
     /// <param name="eventArgs">Input <see cref="PropertyChangingEventArgs" /> instance</param>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="eventArgs" /> is <see langword="null" /></exception>
     protected virtual void OnPropertyChanging(PropertyChangingEventArgs eventArgs) {
-        ArgumentNullException.ThrowIfNull(eventArgs);
+        if (eventArgs == null) {
+            throw new ArgumentNullException(nameof(eventArgs));
+        }
 
         PropertyChanging?.Invoke(this, eventArgs);
     }
