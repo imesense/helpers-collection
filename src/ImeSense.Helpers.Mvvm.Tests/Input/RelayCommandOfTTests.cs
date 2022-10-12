@@ -1,5 +1,3 @@
-﻿using System;
-
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using ImeSense.Helpers.Mvvm.Input;
@@ -31,16 +29,14 @@ namespace ImeSense.Helpers.Mvvm.Tests.Input {
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void Execute_Null_ThrowArgumentNullException() {
-            var command = new RelayCommand<string>(null);
+            Assert.ThrowsException<ArgumentNullException>(() => new RelayCommand<string>(null));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
         public void CanExecute_Null_ThrowArgumentNullException() {
             var text = string.Empty;
-            var command = new RelayCommand<string>(source => text = source, null);
+            Assert.ThrowsException<ArgumentNullException>(() => new RelayCommand<string>(source => text = source, null));
         }
 
         [TestMethod]
