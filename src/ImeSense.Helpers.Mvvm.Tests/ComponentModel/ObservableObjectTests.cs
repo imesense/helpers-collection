@@ -14,18 +14,8 @@ namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
             private T? _data;
 
             public T? Data {
-                get {
-                    return _data;
-                }
-                set {
-                    OnPropertyChanging();
-
-                    if (!EqualityComparer<T>.Default.Equals(_data, value)) {
-                        _data = value;
-                    }
-
-                    OnPropertyChanged();
-                }
+                get => _data;
+                set => SetProperty(ref _data, value);
             }
         }
 
@@ -76,33 +66,13 @@ namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
         public class WrappedModelWithProperty : ObservableObject {
             private Person Person { get; set; }
 
-            public WrappedModelWithProperty(Person person) {
-                Person = person;
-            }
+            public WrappedModelWithProperty(Person person) => Person = person;
 
-            public Person PersonProxy {
-                get {
-                    return Person;
-                }
-            }
+            public Person PersonProxy => Person;
 
             public string? Name {
-                get {
-                    return Person.Name;
-                }
-                set {
-                    OnPropertyChanging();
-
-                    if (Person == null) {
-                        throw new ArgumentException($"Model {nameof(Person)} can not be null!");
-                    }
-
-                    if (!EqualityComparer<string>.Default.Equals(Person.Name, value)) {
-                        Person.Name = value;
-                    }
-
-                    OnPropertyChanged();
-                }
+                get => Person.Name;
+                set => SetProperty(Person.Name, value, Person, (person, name) => person.Name = name);
             }
         }
 
@@ -142,33 +112,13 @@ namespace ImeSense.Helpers.Mvvm.Tests.ComponentModel {
         public class WrappedModelWithField : ObservableObject {
             private readonly Person _person;
 
-            public WrappedModelWithField(Person person) {
-                _person = person;
-            }
+            public WrappedModelWithField(Person person) => _person = person;
 
-            public Person PersonWrapper {
-                get {
-                    return _person;
-                }
-            }
+            public Person PersonWrapper => _person;
 
             public string? Name {
-                get {
-                    return _person.Name;
-                }
-                set {
-                    OnPropertyChanging();
-
-                    if (_person == null) {
-                        throw new ArgumentException($"Model {nameof(_person)} can not be null!");
-                    }
-
-                    if (!EqualityComparer<string>.Default.Equals(_person.Name, value)) {
-                        _person.Name = value;
-                    }
-
-                    OnPropertyChanged();
-                }
+                get => _person.Name;
+                set => SetProperty(_person.Name, value, _person, (person, name) => person.Name = name);
             }
         }
 
