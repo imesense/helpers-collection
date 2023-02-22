@@ -9,7 +9,7 @@
         <Description>Helpers classes for creating applications on the platform .NET</Description>
         <Authors>ImeSense, acidicMercury8</Authors>
         <PackageTags>mvvm</PackageTags>
-        <Version>0.2.0</Version>
+        <Version>0.2.1</Version>
         <Company>ImeSense</Company>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
