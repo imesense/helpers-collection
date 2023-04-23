@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net472</TargetFrameworks>
+        <LangVersion>10.0</LangVersion>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>ImeSense.Controls.WinForms.PropertyGrid</Title>
+        <Description>Helpers classes for creating applications on the platform .NET</Description>
+        <Authors>ImeSense, acidicMercury8</Authors>
+        <PackageTags></PackageTags>
+        <Version>0.1.0</Version>
+        <Company>ImeSense</Company>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+        <PackageProjectUrl>https://github.com/imesense/helpers-collection/</PackageProjectUrl>
+    </PropertyGroup>
+</Project>
