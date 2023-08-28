@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFrameworks>net6.0-windows;net7.0-windows</TargetFrameworks>
+        <OutputType>Library</OutputType>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <UseWpf>true</UseWpf>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Title>ImeSense.Helpers.Interop.Wpf</Title>
+        <Description>Helpers classes for creating applications on .NET platform</Description>
+        <Authors>ImeSense, acidicMercury8</Authors>
+        <PackageTags></PackageTags>
+        <Version>0.1.0</Version>
+        <Company>ImeSense</Company>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+        <PackageProjectUrl>https://github.com/imesense/helpers-collection/</PackageProjectUrl>
+        <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.4" />
+    </ItemGroup>
+</Project>
