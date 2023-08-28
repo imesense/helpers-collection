@@ -1,4 +1,4 @@
-name: 'Build helpers collection'
+name: 'Build collection'
 
 on:
   push:
@@ -10,12 +10,15 @@ on:
 
 jobs:
   build:
-    name: 'Building'
+    name: 'Build'
 
     strategy:
       matrix:
-        system: [ windows-2022 ]
-        config: [ Debug, Release ]
+        system:
+          - windows-2022
+        config:
+          - Debug
+          - Release
 
     runs-on: ${{ matrix.system }}
 
@@ -28,12 +31,12 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Install .NET
+      - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '6.0.x'
 
-      - name: Install dependencies
+      - name: Restore dependencies
         run: |
           dotnet restore $env:Solution
 
@@ -48,5 +51,5 @@ jobs:
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
-          name: bin-${{ matrix.config }}-${{ github.sha }}
+          name: bin-(${{ matrix.config }})-(${{ github.sha }})
           path: bin/${{ matrix.config }}/
