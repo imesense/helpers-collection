@@ -7,7 +7,7 @@
         <UseWpf>true</UseWpf>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Title>ImeSense.Helpers.Interop.Wpf</Title>
+        <Title>ImeSense.Helpers.Wpf.Interop</Title>
         <Description>Helpers classes for creating applications on .NET platform</Description>
         <Authors>ImeSense, acidicMercury8</Authors>
         <PackageTags></PackageTags>

@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace ImeSense.Helpers.Interop.Wpf;
+namespace ImeSense.Helpers.Wpf.Interop;
 
 internal unsafe static class NativeFunctions {
     [DllImport("user32.dll")]

@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImeSense.Helpers.Mvvm.Tests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ImeSense.Controls.WinForms.PropertyGrid", "src\ImeSense.Controls.WinForms.PropertyGrid\ImeSense.Controls.WinForms.PropertyGrid.csproj", "{1BCE84BF-6EF6-4661-B649-04878A93E75C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImeSense.Helpers.Interop.Wpf", "src\ImeSense.Helpers.Interop.Wpf\ImeSense.Helpers.Interop.Wpf.csproj", "{9B96BEC6-4FAD-4205-B854-03465630869E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImeSense.Helpers.Wpf.Interop", "src\ImeSense.Helpers.Wpf.Interop\ImeSense.Helpers.Wpf.Interop.csproj", "{9B96BEC6-4FAD-4205-B854-03465630869E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -7,7 +7,7 @@ using Avalonia.Controls.Embedding;
 
 using AvControl = Avalonia.Controls.Control;
 
-namespace ImeSense.Helpers.Interop.Wpf;
+namespace ImeSense.Helpers.Wpf.Interop;
 
 /// <summary>
 /// Element that allows to host Avalonia control on WPF page
