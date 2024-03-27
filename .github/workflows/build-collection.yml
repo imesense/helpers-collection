@@ -4,18 +4,41 @@ on:
   push:
     branches:
       - '**'
+    paths:
+      - '.github/workflows/**'
+      - 'src/**'
+      - '*.sln'
+      - '*.props'
+      - '*.targets'
+      - '*.yml'
+      - '*.yaml'
   pull_request:
     branches:
       - '**'
+    paths:
+      - '.github/workflows/**'
+      - 'src/**'
+      - '*.sln'
+      - '*.props'
+      - '*.targets'
+      - '*.yml'
+      - '*.yaml'
 
 jobs:
-  build:
-    name: 'Build'
+  build-collection:
+    name: 'Build collection'
 
     strategy:
       matrix:
         system:
           - windows-2022
+        framework:
+          - net6.0
+          - net7.0
+          - net8.0
+          - net6.0-windows
+          - net7.0-windows
+          - net8.0-windows
         config:
           - Debug
           - Release
@@ -42,11 +65,11 @@ jobs:
 
       - name: Build solution
         run: |
-          dotnet build $env:Solution -p:Configuration=${{ matrix.config }} --no-restore
+          dotnet build $env:Solution --framework ${{ matrix.framework }} --configuration ${{ matrix.config }} --no-restore
 
       - name: Run tests
         run:
-          dotnet test $env:Solution -p:Configuration=${{ matrix.config }} --no-build --no-restore --verbosity normal
+          dotnet test $env:Solution --framework ${{ matrix.framework }} --configuration ${{ matrix.config }} --no-build --no-restore --verbosity normal
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
