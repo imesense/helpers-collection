@@ -3,25 +3,15 @@ using System;
 namespace ImeSense.Controls.WinForms.PropertyGrid;
 
 public class PropertySpecEventArgs : EventArgs {
-    private PropertySpec property;
-    public PropertySpec Property {
-        get {
-            return property;
-        }
-    }
+    private readonly PropertySpec _property;
 
-    private object val;
-    public object Value {
-        get {
-            return val;
-        }
-        set {
-            val = value;
-        }
-    }
+    public PropertySpec Property => _property;
 
-    public PropertySpecEventArgs(PropertySpec property, object val) {
-        this.property = property;
-        this.val = val;
+    public object Value { get; set; }
+
+    public PropertySpecEventArgs(PropertySpec property, object value) {
+        _property = property;
+
+        Value = value;
     }
 }

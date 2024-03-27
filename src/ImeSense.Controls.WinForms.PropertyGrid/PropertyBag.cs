@@ -8,54 +8,30 @@ namespace ImeSense.Controls.WinForms.PropertyGrid;
 public class PropertyBag : ICustomTypeDescriptor {
     [Serializable]
     public class PropertySpecCollection : IList, ICollection, IEnumerable {
-        private ArrayList innerArray;
+        private readonly ArrayList _innerArray;
 
         object IList.this[int index] {
-            get {
-                return this[index];
-            }
-            set {
-                this[index] = (PropertySpec) value;
-            }
+            get => this[index];
+            set => this[index] = (PropertySpec) value;
         }
 
         public PropertySpec this[int index] {
-            get {
-                return (PropertySpec) innerArray[index];
-            }
-            set {
-                innerArray[index] = value;
-            }
+            get => (PropertySpec) _innerArray[index];
+            set => _innerArray[index] = value;
         }
 
-        public int Count {
-            get {
-                return innerArray.Count;
-            }
-        }
+        public int Count => _innerArray.Count;
 
-        public bool IsFixedSize {
-            get {
-                return false;
-            }
-        }
+        public bool IsFixedSize => false;
 
-        public bool IsReadOnly {
-            get {
-                return false;
-            }
-        }
+        public bool IsReadOnly => false;
 
-        public bool IsSynchronized {
-            get {
-                return false;
-            }
-        }
+        public bool IsSynchronized => false;
 
-        object ICollection.SyncRoot {
-            get {
-                return null;
-            }
+        object ICollection.SyncRoot => null;
+
+        public PropertySpecCollection() {
+            _innerArray = new ArrayList();
         }
 
         int IList.Add(object value) {
@@ -78,28 +54,24 @@ public class PropertyBag : ICustomTypeDescriptor {
             Remove((PropertySpec) value);
         }
 
-        public PropertySpecCollection() {
-            innerArray = new ArrayList();
-        }
-
         public int Add(PropertySpec value) {
-            return innerArray.Add(value);
+            return _innerArray.Add(value);
         }
 
         public void AddRange(PropertySpec[] array) {
-            innerArray.AddRange(array);
+            _innerArray.AddRange(array);
         }
 
         public void Clear() {
-            innerArray.Clear();
+            _innerArray.Clear();
         }
 
         public bool Contains(PropertySpec item) {
-            return innerArray.Contains(item);
+            return _innerArray.Contains(item);
         }
 
         public bool Contains(string name) {
-            foreach (PropertySpec item in innerArray) {
+            foreach (PropertySpec item in _innerArray) {
                 if (item.Name == name) {
                     return true;
                 }
@@ -108,24 +80,24 @@ public class PropertyBag : ICustomTypeDescriptor {
         }
 
         public void CopyTo(PropertySpec[] array) {
-            innerArray.CopyTo(array);
+            _innerArray.CopyTo(array);
         }
 
         public void CopyTo(PropertySpec[] array, int index) {
-            innerArray.CopyTo(array, index);
+            _innerArray.CopyTo(array, index);
         }
 
         public IEnumerator GetEnumerator() {
-            return innerArray.GetEnumerator();
+            return _innerArray.GetEnumerator();
         }
 
         public int IndexOf(PropertySpec value) {
-            return innerArray.IndexOf(value);
+            return _innerArray.IndexOf(value);
         }
 
         public int IndexOf(string name) {
-            int num = 0;
-            foreach (PropertySpec item in innerArray) {
+            var num = 0;
+            foreach (PropertySpec item in _innerArray) {
                 if (item.Name == name) {
                     return num;
                 }
@@ -135,24 +107,24 @@ public class PropertyBag : ICustomTypeDescriptor {
         }
 
         public void Insert(int index, PropertySpec value) {
-            innerArray.Insert(index, value);
+            _innerArray.Insert(index, value);
         }
 
         public void Remove(PropertySpec obj) {
-            innerArray.Remove(obj);
+            _innerArray.Remove(obj);
         }
 
         public void Remove(string name) {
-            int index = IndexOf(name);
+            var index = IndexOf(name);
             RemoveAt(index);
         }
 
         public void RemoveAt(int index) {
-            innerArray.RemoveAt(index);
+            _innerArray.RemoveAt(index);
         }
 
         public PropertySpec[] ToArray() {
-            return (PropertySpec[]) innerArray.ToArray(typeof(PropertySpec));
+            return (PropertySpec[]) _innerArray.ToArray(typeof(PropertySpec));
         }
 
         void ICollection.CopyTo(Array array, int index) {
@@ -161,89 +133,65 @@ public class PropertyBag : ICustomTypeDescriptor {
     }
 
     public class PropertySpecDescriptor : PropertyDescriptor {
-        public PropertyBag bag;
+        public PropertyBag _bag;
 
-        public PropertySpec item;
+        public PropertySpec _item;
 
-        public override Type ComponentType {
-            get {
-                return item.GetType();
-            }
-        }
+        public override Type ComponentType => _item.GetType();
 
-        public override Type PropertyType {
-            get {
-                return Type.GetType(item.TypeName);
-            }
-        }
+        public override Type PropertyType => Type.GetType(_item.TypeName);
 
-        public override bool IsReadOnly {
-            get {
-                return Attributes.Matches(ReadOnlyAttribute.Yes);
-            }
-        }
+        public override bool IsReadOnly => Attributes.Matches(ReadOnlyAttribute.Yes);
 
-        public PropertySpecDescriptor(PropertySpec item, PropertyBag bag, string name,
-            Attribute[] attrs) : base(name, attrs) {
-            this.bag = bag;
-            this.item = item;
+        public PropertySpecDescriptor(
+            PropertySpec item, PropertyBag bag, string name,
+            Attribute[] attrs
+        ) : base(name, attrs) {
+            _bag = bag;
+            _item = item;
         }
 
         public override bool CanResetValue(object component) {
-            if (item.DefaultValue == null) {
+            if (_item.DefaultValue == null) {
                 return false;
             }
-            return !GetValue(component).Equals(item.DefaultValue);
+            return !GetValue(component).Equals(_item.DefaultValue);
         }
 
         public override object GetValue(object component) {
-            var propertySpecEventArgs = new PropertySpecEventArgs(item, null);
-            bag.OnGetValue(propertySpecEventArgs);
+            var propertySpecEventArgs = new PropertySpecEventArgs(_item, null);
+            _bag.OnGetValue(propertySpecEventArgs);
             return propertySpecEventArgs.Value;
         }
 
         public override void ResetValue(object component) {
-            SetValue(component, item.DefaultValue);
+            SetValue(component, _item.DefaultValue);
         }
 
         public override void SetValue(object component, object value) {
-            var e = new PropertySpecEventArgs(item, value);
-            bag.OnSetValue(e);
+            var eventArgs = new PropertySpecEventArgs(_item, value);
+            _bag.OnSetValue(eventArgs);
         }
 
         public override bool ShouldSerializeValue(object component) {
-            object value = GetValue(component);
-            if (item.DefaultValue == null && value == null) {
+            var value = GetValue(component);
+            if (_item.DefaultValue == null && value == null) {
                 return false;
             }
-            return !value.Equals(item.DefaultValue);
+            return !value.Equals(_item.DefaultValue);
         }
     }
 
-    private string defaultProperty;
-    public string DefaultProperty {
-        get {
-            return defaultProperty;
-        }
-        set {
-            defaultProperty = value;
-        }
-    }
-
-    private PropertySpecCollection properties;
-    public PropertySpecCollection Properties {
-        get {
-            return properties;
-        }
-    }
+    public string DefaultProperty { get; set; }
+    public PropertySpecCollection Properties { get; }
 
     public event PropertySpecEventHandler GetValue;
 
     public event PropertySpecEventHandler SetValue;
 
     public PropertyBag() {
-        defaultProperty = null;
-        properties = new PropertySpecCollection();
+        DefaultProperty = null;
+        Properties = new PropertySpecCollection();
     }
 
     protected virtual void OnGetValue(PropertySpecEventArgs e) {
@@ -276,9 +224,9 @@ public class PropertyBag : ICustomTypeDescriptor {
 
     PropertyDescriptor ICustomTypeDescriptor.GetDefaultProperty() {
         PropertySpec propertySpec = null;
-        if (defaultProperty != null) {
-            int index = properties.IndexOf(defaultProperty);
-            propertySpec = properties[index];
+        if (DefaultProperty != null) {
+            var index = Properties.IndexOf(DefaultProperty);
+            propertySpec = Properties[index];
         }
         if (propertySpec != null) {
             return new PropertySpecDescriptor(propertySpec, this, propertySpec.Name, null);
@@ -304,7 +252,7 @@ public class PropertyBag : ICustomTypeDescriptor {
 
     PropertyDescriptorCollection ICustomTypeDescriptor.GetProperties(Attribute[] attributes) {
         var arrayList = new ArrayList();
-        foreach (PropertySpec property in properties) {
+        foreach (PropertySpec property in Properties) {
             var arrayList2 = new ArrayList();
             if (property.Category != null) {
                 arrayList2.Add(new CategoryAttribute(property.Category));

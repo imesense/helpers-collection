@@ -3,28 +3,26 @@ using System.Collections;
 namespace ImeSense.Controls.WinForms.PropertyGrid;
 
 public class PropertyTable : PropertyBag {
-    private Hashtable propValues;
+    private readonly Hashtable _propertyValues;
 
     public object this[string key] {
-        get {
-            return propValues[key];
-        }
-        set {
-            propValues[key] = value;
-        }
+        get => _propertyValues[key];
+        set => _propertyValues[key] = value;
     }
 
     public PropertyTable() {
-        propValues = new Hashtable();
+        _propertyValues = new Hashtable();
     }
 
-    protected override void OnGetValue(PropertySpecEventArgs e) {
-        e.Value = propValues[e.Property.Name];
-        base.OnGetValue(e);
+    protected override void OnGetValue(PropertySpecEventArgs eventArgs) {
+        eventArgs.Value = _propertyValues[eventArgs.Property.Name];
+
+        base.OnGetValue(eventArgs);
     }
 
-    protected override void OnSetValue(PropertySpecEventArgs e) {
-        propValues[e.Property.Name] = e.Value;
-        base.OnSetValue(e);
+    protected override void OnSetValue(PropertySpecEventArgs eventArgs) {
+        _propertyValues[eventArgs.Property.Name] = eventArgs.Value;
+
+        base.OnSetValue(eventArgs);
     }
 }
